@@ -299,7 +299,7 @@ return [
     | This value is used to set the background image of login page.
     |
     */
-    'login_background_image' => '',
+    'login_background_image' => 'https://img.ivsky.com/img/tupian/pre/202005/11/rainbow-008.jpg',
 
     /*
     |--------------------------------------------------------------------------
@@ -370,7 +370,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | The global Grid action display class.
+    | The global GridExtension action display class.
     |--------------------------------------------------------------------------
     */
     'grid_action_class' => \Encore\Admin\Grid\Displayers\DropdownActions::class,

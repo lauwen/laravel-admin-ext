@@ -2,7 +2,6 @@
 
 namespace Lauwen\PHPInfo;
 
-use Encore\Admin\Admin;
 use Illuminate\Support\ServiceProvider;
 
 class PHPInfoServiceProvider extends ServiceProvider
@@ -29,9 +28,6 @@ class PHPInfoServiceProvider extends ServiceProvider
 
         $this->app->booted(function () {
             PHPInfo::routes(__DIR__.'/../routes/web.php');
-        });
-        Admin::booting(function () {
-            Admin::js("vendor/lauwen/phpinfo/test.js");
         });
     }
 }

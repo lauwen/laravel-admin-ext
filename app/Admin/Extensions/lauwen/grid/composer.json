@@ -1,9 +1,9 @@
 {
-    "name": "lauwen/phpinfo",
+    "name": "lauwen/grid",
     "description": "description...",
     "type": "library",
     "keywords": ["laravel-admin", "extension"],
-    "homepage": "https://github.com/lauwen/phpinfo",
+    "homepage": "https://github.com/lauwen/grid",
     "license": "MIT",
     "authors": [
         {
@@ -20,13 +20,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Lauwen\\\\PHPInfo\\": "src/"
+            "Lauwen\\Grid\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Lauwen\\\\PHPInfo\\PHPInfoServiceProvider"
+                "Lauwen\\Grid\\GridServiceProvider"
             ]
         }
     }

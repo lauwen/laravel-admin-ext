@@ -15,7 +15,7 @@ class CgSummaryController extends AdminController
      *
      * @var string
      */
-    protected $title = 'CgSummary';
+    protected $title = '采购申请单';
 
     /**
      * Make a grid builder.
@@ -24,10 +24,25 @@ class CgSummaryController extends AdminController
      */
     protected function grid()
     {
-        $grid = new Grid(new CgSummary());
+//        $grid = new Grid(new CgSummary());
+        $grid = new \Lauwen\Grid\Grid(new CgSummary());
 
         $grid->column('id', __('Id'));
-        $grid->column('summary_sn', __('Summary sn'));
+        $grid->column('summary_sn', __('Summary sn'))->expand(function ($model){
+            $goods = $model->detail()->get()->map(function ($good) {
+                $res = $good->only(["goods_id", "name", "supplier_id", "price", "quantity", "specs"]);
+                $res = [
+                    "goods_id"=>$res['goods_id'],
+                    "name"=>$res['name'],
+                    'supplier' => $res['supplier_id'],
+                    "price"=>$res['price'],
+                    "quantity"=>$res['quantity'],
+                    "specs"=>$res['specs']
+                ];
+                return $res;
+            });
+            return new \Encore\Admin\Widgets\Table(['ID', '名称', '供应商', '价格', '数量', '规格'], $goods->toArray());
+        })->filter('like');
         $grid->column('user_id', __('User id'));
         $grid->column('store_id', __('Store id'));
         $grid->column('remarks', __('Remarks'));
@@ -38,8 +53,12 @@ class CgSummaryController extends AdminController
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
         $grid->paginate(10);
+//        $grid->fixColumns(3, -2);
 
-        $grid->setView("test");
+        $grid->setSubGridTitle("采购申请单明细");
+        $grid->setSubGridUrl("/admin/table");
+        $grid->setSubGridColumns(["ID", "名称", "价格", "数量", "单位"]);
+        $grid->setSubGridFields(['detail_id', 'name', 'price', 'quantity', 'specs']);
 
         return $grid;
     }

@@ -1,20 +1,20 @@
 <?php
 
-namespace Lauwen\PHPInfo;
+namespace Lauwen\Grid;
 
 use Encore\Admin\Extension;
 
-class PHPInfo extends Extension
+class GridExtension extends Extension
 {
-    public $name = 'phpinfo';
+    public $name = 'grid';
 
     public $views = __DIR__.'/../resources/views';
 
     public $assets = __DIR__.'/../resources/assets';
 
     public $menu = [
-        'title' => 'Phpinfo',
-        'path'  => 'phpinfo',
+        'title' => 'GridExtension',
+        'path'  => 'grid',
         'icon'  => 'fa-gears',
     ];
 }

@@ -12,6 +12,14 @@ Route::group([
 ], function (Router $router) {
 
     $router->get('/', 'HomeController@index')->name('home');
+    $router->get('table', function () {
+        $id = request()->get('la_id');
+        $res = \App\Models\CgSummaryDetail::where('summary_id', $id)->get();
+        if (empty($res)) {
+            echo json_encode($res);;
+        }
+        echo json_encode($res->toArray());
+    });
     $router->resource('cg-summaries', CgSummaryController::class);
 
 });
