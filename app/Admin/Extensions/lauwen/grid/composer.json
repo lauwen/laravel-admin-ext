@@ -1,14 +1,14 @@
 {
     "name": "lauwen/grid",
-    "description": "description...",
+    "description": "A sub grid for laravel-admin grid.",
     "type": "library",
     "keywords": ["laravel-admin", "extension"],
     "homepage": "https://github.com/lauwen/grid",
     "license": "MIT",
     "authors": [
         {
-            "name": "your name",
-            "email": "your email"
+            "name": "lauwen",
+            "email": "me@luxuewen.com"
         }
     ],
     "require": {

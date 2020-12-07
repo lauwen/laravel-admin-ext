@@ -44,7 +44,6 @@
                 @if($grid->rows()->isEmpty() && $grid->showDefineEmptyPage())
                     @include('admin::grid.empty-grid')
                 @endif
-{{--{{ dd($subGridFields) }}--}}
                 @foreach($grid->rows() as $row)
                 <tr {!! $row->getRowAttributes() !!}
                     data-fields={!! $subGridFields !!}
@@ -90,36 +89,5 @@
         </table>
     </div>
     @endif
-
-{{--    <div class="box-body table-responsive no-padding">--}}
-{{--        <table--}}
-{{--            data-classes="table table-hover table-striped"--}}
-{{--            id="lauwen-grid-data-bootstrap-table-subtable"--}}
-{{--            data-toggle="table"--}}
-{{--            data-url="/admin/table/118"--}}
-{{--            data-method="get"--}}
-{{--            data-pagination="true"--}}
-{{--            data-search="false"--}}
-{{--            data-detail-view="true"--}}
-{{--        >--}}
-{{--            <caption class="lauwen-grid-data-subtable-title">申请单明细</caption>--}}
-{{--            <thead>--}}
-{{--            <tr>--}}
-{{--                <th data-field="detail_id">ID</th>--}}
-{{--                <th data-field="name">名称</th>--}}
-{{--                <th data-field="price">价格</th>--}}
-{{--                <th data-field="quantity">数量</th>--}}
-{{--                <th data-field="specs">单位</th>--}}
-{{--            </tr>--}}
-{{--            </thead>--}}
-{{--            <tbody>--}}
-
-{{--            </tbody>--}}
-{{--        </table>--}}
-{{--    </div>--}}
     <!-- /.box-body -->
 </div>
-{{--<script>--}}
-{{--    var fields = JSON.parse('{!! $subGridFields !!}');--}}
-{{--    console.log(fields);--}}
-{{--</script>--}}

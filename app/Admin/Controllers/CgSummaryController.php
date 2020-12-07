@@ -56,7 +56,7 @@ class CgSummaryController extends AdminController
 //        $grid->fixColumns(3, -2);
 
         $grid->setSubGridTitle("采购申请单明细");
-        $grid->setSubGridUrl("/admin/table");
+        $grid->setSubGridUrl("/admin/table");    // la_id::get
         $grid->setSubGridColumns(["ID", "名称", "价格", "数量", "单位"]);
         $grid->setSubGridFields(['detail_id', 'name', 'price', 'quantity', 'specs']);
 

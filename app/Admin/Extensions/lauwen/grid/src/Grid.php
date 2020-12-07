@@ -17,9 +17,6 @@ class Grid extends AdminGrid
      */
     protected $view = "grid::table";
 
-    protected $subtableTitle = "";
-
-
     public function __construct(Eloquent $model, Closure $builder = null)
     {
         parent::__construct($model, $builder);
