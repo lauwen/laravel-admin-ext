@@ -59,6 +59,12 @@ class CgSummaryController extends AdminController
         $grid->setSubGridUrl("/admin/table");    // la_id::get
         $grid->setSubGridColumns(["ID", "名称", "价格", "数量", "单位"]);
         $grid->setSubGridFields(['detail_id', 'name', 'price', 'quantity', 'specs']);
+        $grid->setSubGrid(function ($subGrid) {
+            $subGrid->setSubGridTitle("采购申请单明细");
+            $subGrid->setSubGridUrl("/admin/table");    // la_id::get
+            $subGrid->setSubGridColumns(["ID", "名称", "价格", "数量", "单位"]);
+            $subGrid->setSubGridFields(['detail_id', 'name', 'price', 'quantity', 'specs']);
+        });
 
         return $grid;
     }
