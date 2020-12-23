@@ -64,6 +64,11 @@
         {
             "type": "path",
             "url": "app/Admin/Extensions/lauwen/grid"
+        },
+        {
+            "type": "path",
+            "url": "app/Admin/Extensions/lauwen/form"
         }
+
     ]
 }
