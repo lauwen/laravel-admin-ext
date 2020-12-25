@@ -2,9 +2,10 @@
 
 namespace Lauwen\Form;
 
-use \Encore\Admin\Form as AdminForm;
+use Encore\Admin\Form\Field;
 
-class Form extends AdminForm
+class Form extends Field
 {
-
+    public function A(){
+    }
 }
