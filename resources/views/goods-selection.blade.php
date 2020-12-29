@@ -62,6 +62,18 @@
         .lauwen-goods-selection-box-footer button:first-child{
             margin-right: 15px;
         }
+        .lauwen-goods-selection-type{
+            background-color: white;
+            padding: 15px 15px;
+        }
+        .lauwen-goods-selection-type::before{
+            content: "分类：";
+            font-weight: bold;
+        }
+        .lauwen-goods-selection-type-item{
+            cursor: pointer;
+            margin: 15px 10px;
+        }
     </style>
 </head>
 <body>
@@ -75,6 +87,14 @@
 </div>
 
 <div class="panel panel-default" id="lauwen-goods-selection-box" style="display: none">
+    <div class="panel-heading lauwen-goods-selection-type">
+        <div class="label label-default lauwen-goods-selection-type-item">Default</div>
+        <div class="label label-primary lauwen-goods-selection-type-item">Primary</div>
+        <div class="label label-success lauwen-goods-selection-type-item">Success</div>
+        <div class="label label-info lauwen-goods-selection-type-item">Info</div>
+        <div class="label label-warning lauwen-goods-selection-type-item">Warning</div>
+        <div class="label label-danger lauwen-goods-selection-type-item">Danger</div>
+    </div>
     <div class="panel-body">
         <ul class="list-group">
             <li class="list-group-item lauwen-goods-selection-item">
