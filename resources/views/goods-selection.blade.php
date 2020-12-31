@@ -13,26 +13,33 @@
             display: flex;
             flex-direction: row;
             justify-content: flex-start;
-            padding: 5px 10px;
+            padding: 6px 10px;
         }
         .lauwen-goods-selection-item-info {
             flex-grow: 1;
+            display: flex;
+            flex-direction: row;
         }
-        .lauwen-goods-selection-item-info p:first-child {
+        .lauwen-goods-selection-item-info div:first-child {
+            flex-grow: 1;
             font-weight: bold;
+            align-self: center;
         }
-        .lauwen-goods-selection-item-info p:last-child {
+        .lauwen-goods-selection-item-info div:last-child {
             margin: 0;
             color: #666666;
+            align-self: center;
+            padding-right: 35px;
         }
-        .lauwen-goods-selection-item-info p:last-child strong {
+        .lauwen-goods-selection-item-info div:last-child strong {
             color: red;
+            justify-content: flex-end;
         }
-        .lauwen-goods-selection-item-info p:last-child strong::before {
+        .lauwen-goods-selection-item-info div:last-child strong::before {
             content: "\00A5";
         }
         .lauwen-goods-selection-item-quantity {
-            width: 150px;
+            width: 120px;
             display: flex;
             display: -webkit-flex;
             justify-content: center;
@@ -42,15 +49,19 @@
         }
         .lauwen-goods-selection-item-value{
             text-align: center;
+            height: 24px;
         }
         .lauwen-goods-selection-decrement,
         .lauwen-goods-selection-increment{
             background-color: #4cae4c;
             color: white;
             cursor: pointer;
+            height: 20px;
+            padding: 2px 6px;
         }
         .lauwen-goods-selection-decrement{
             font-weight: bold;
+            width: 26px;
         }
         .lauwen-goods-selection-increment{
 
@@ -58,9 +69,36 @@
         .lauwen-goods-selection-box-footer{
             display: flex;
             justify-content: flex-end;
+            /*position: fixed;*/
+            /*bottom: 0px;*/
         }
         .lauwen-goods-selection-box-footer button:first-child{
             margin-right: 15px;
+        }
+        #lauwen-goods-selection-box{
+            display: none;
+            position: relative;
+            -webkit-touch-callout: none;
+            -moz-user-select: none; /*火狐*/
+            -webkit-user-select: none;  /*webkit浏览器*/
+            -ms-user-select: none;   /*IE10*/
+            -khtml-user-select: none; /*早期浏览器*/
+            user-select: none;
+        }
+        #lauwen-goods-selection-box .panel-heading{
+            /*display: none;*/
+        }
+        #lauwen-goods-selection-box .panel-body{
+            /*display: none;*/
+        }
+        #lauwen-goods-selection-box .panel-footer{
+            /*display: none;*/
+        }
+        #lauwen-goods-selection-box .panel-body>ul{
+            display: none;
+        }
+        #lauwen-goods-selection-box .panel-body>ul:first-child{
+            display: block;
         }
         .lauwen-goods-selection-type{
             background-color: white;
@@ -72,31 +110,44 @@
         }
         .lauwen-goods-selection-type-item{
             cursor: pointer;
-            margin: 15px 10px;
+            margin: 15px 10px 0 10px;
+            color: #1a2226;
+            display: inline-block;
+        }
+        .lauwen-goods-selection-type-item-active{
+            color: white;
+            font-weight: bolder;
+            background-color: #0081ff;
+            border-color: #367fa9;
+            border-radius: 3px;
+            padding: 2px 3px;
         }
     </style>
 </head>
 <body>
 <div class="container" style="margin-top: 100px;">
-    <button type="button" class="btn btn-success" onclick="goodSelect()">选择</button>
     <div class="panel panel-default">
+        <div class="panel-heading">
+            <button type="button" class="btn btn-success" onclick="goodSelect()">选择</button>
+        </div>
         <div class="panel-body" id="lauwen-goods-selection-result">
             <ul class="list-group"></ul>
         </div>
     </div>
 </div>
 
-<div class="panel panel-default" id="lauwen-goods-selection-box" style="display: none">
+<div class="panel panel-default" id="lauwen-goods-selection-box">
     <div class="panel-heading lauwen-goods-selection-type">
-        <div class="label label-default lauwen-goods-selection-type-item">Default</div>
-        <div class="label label-primary lauwen-goods-selection-type-item">Primary</div>
-        <div class="label label-success lauwen-goods-selection-type-item">Success</div>
-        <div class="label label-info lauwen-goods-selection-type-item">Info</div>
-        <div class="label label-warning lauwen-goods-selection-type-item">Warning</div>
-        <div class="label label-danger lauwen-goods-selection-type-item">Danger</div>
+        <div class="lauwen-goods-selection-type-item lauwen-goods-selection-type-item-active" data-type="1">Default</div>
+        <div class="lauwen-goods-selection-type-item" data-type="2">Default</div>
+        <div class="lauwen-goods-selection-type-item" data-type="3">Default</div>
+        <div class="lauwen-goods-selection-type-item">Default</div>
+        <div class="lauwen-goods-selection-type-item">Default</div>
+        <div class="lauwen-goods-selection-type-item">Default</div>
+        <div class="lauwen-goods-selection-type-item">Primary</div>
     </div>
     <div class="panel-body">
-        <ul class="list-group">
+        <ul class="list-group" id="lauwen-goods-selection-box-list-1">
             <li class="list-group-item lauwen-goods-selection-item">
                 <div class="lauwen-goods-selection-item-info">
                     <p>猪肚（5斤装）</p>
@@ -150,6 +201,345 @@
                 </div>
             </li>
         </ul>
+        <ul class="list-group" id="lauwen-goods-selection-box-list-2">
+            <li class="list-group-item lauwen-goods-selection-item">
+                <div class="lauwen-goods-selection-item-info">
+                    <p>猪肉（5斤装）</p>
+                    <p>
+                        <strong>21</strong>/
+                        件
+                    </p>
+                </div>
+                <div class="lauwen-goods-selection-item-quantity">
+                    <div class="input-group">
+                        <div class="input-group-addon lauwen-goods-selection-decrement" id="">&#8211;</div>
+                        <input type="text"
+                               class="form-control lauwen-goods-selection-item-value"
+                               placeholder="数量"
+                               id="lauwen-goods-1"
+                               value="0"
+                               data-goods-id="1"
+                               data-goods-name="猪肚"
+                               data-goods-specs="5斤装"
+                               data-goods-unit="件"
+                               data-goods-price="21"
+                        >
+                        <div class="input-group-addon lauwen-goods-selection-increment">&#10010;</div>
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item lauwen-goods-selection-item">
+                <div class="lauwen-goods-selection-item-info">
+                    <p>猪肉（5斤装）</p>
+                    <p>
+                        <strong>21</strong>/
+                        件
+                    </p>
+                </div>
+                <div class="lauwen-goods-selection-item-quantity">
+                    <div class="input-group">
+                        <div class="input-group-addon lauwen-goods-selection-decrement" id="">&#8211;</div>
+                        <input type="text"
+                               class="form-control lauwen-goods-selection-item-value"
+                               placeholder="数量"
+                               id="lauwen-goods-1"
+                               value="0"
+                               data-goods-id="1"
+                               data-goods-name="猪肚"
+                               data-goods-specs="5斤装"
+                               data-goods-unit="件"
+                               data-goods-price="21"
+                        >
+                        <div class="input-group-addon lauwen-goods-selection-increment">&#10010;</div>
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item lauwen-goods-selection-item">
+                <div class="lauwen-goods-selection-item-info">
+                    <p>猪肺（5个装）</p>
+                    <p>
+                        <strong>21</strong>/
+                        件
+                    </p>
+                </div>
+                <div class="lauwen-goods-selection-item-quantity">
+                    <div class="input-group">
+                        <div class="input-group-addon lauwen-goods-selection-decrement" id="">&#8211;</div>
+                        <input type="text"
+                               class="form-control lauwen-goods-selection-item-value"
+                               placeholder="数量"
+                               id="lauwen-goods-2"
+                               value="0"
+                               data-goods-id="2"
+                               data-goods-name="猪肺"
+                               data-goods-specs="5个装"
+                               data-goods-unit="件"
+                               data-goods-price="21"
+                        >
+                        <div class="input-group-addon lauwen-goods-selection-increment">&#10010;</div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <ul class="list-group" id="lauwen-goods-selection-box-list-3">
+            <li class="list-group-item lauwen-goods-selection-item">
+                <div class="lauwen-goods-selection-item-info">
+                    <div>猪肉（5斤装）</div>
+                    <div><strong>21</strong>/件</div>
+                </div>
+                <div class="lauwen-goods-selection-item-quantity">
+                    <div class="input-group">
+                        <div class="input-group-addon lauwen-goods-selection-decrement" id="">&#8211;</div>
+                        <input type="text"
+                               class="form-control lauwen-goods-selection-item-value"
+                               placeholder="数量"
+                               id="lauwen-goods-1"
+                               value="0"
+                               data-goods-id="1"
+                               data-goods-name="猪肚"
+                               data-goods-specs="5斤装"
+                               data-goods-unit="件"
+                               data-goods-price="21"
+                        >
+                        <div class="input-group-addon lauwen-goods-selection-increment">&#10010;</div>
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item lauwen-goods-selection-item">
+                <div class="lauwen-goods-selection-item-info">
+                    <p>猪肉（5斤装）</p>
+                    <p>
+                        <strong>21</strong>/
+                        件
+                    </p>
+                </div>
+                <div class="lauwen-goods-selection-item-quantity">
+                    <div class="input-group">
+                        <div class="input-group-addon lauwen-goods-selection-decrement" id="">&#8211;</div>
+                        <input type="text"
+                               class="form-control lauwen-goods-selection-item-value"
+                               placeholder="数量"
+                               id="lauwen-goods-1"
+                               value="0"
+                               data-goods-id="1"
+                               data-goods-name="猪肚"
+                               data-goods-specs="5斤装"
+                               data-goods-unit="件"
+                               data-goods-price="21"
+                        >
+                        <div class="input-group-addon lauwen-goods-selection-increment">&#10010;</div>
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item lauwen-goods-selection-item">
+                <div class="lauwen-goods-selection-item-info">
+                    <p>猪肉（5斤装）</p>
+                    <p>
+                        <strong>21</strong>/
+                        件
+                    </p>
+                </div>
+                <div class="lauwen-goods-selection-item-quantity">
+                    <div class="input-group">
+                        <div class="input-group-addon lauwen-goods-selection-decrement" id="">&#8211;</div>
+                        <input type="text"
+                               class="form-control lauwen-goods-selection-item-value"
+                               placeholder="数量"
+                               id="lauwen-goods-1"
+                               value="0"
+                               data-goods-id="1"
+                               data-goods-name="猪肚"
+                               data-goods-specs="5斤装"
+                               data-goods-unit="件"
+                               data-goods-price="21"
+                        >
+                        <div class="input-group-addon lauwen-goods-selection-increment">&#10010;</div>
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item lauwen-goods-selection-item">
+                <div class="lauwen-goods-selection-item-info">
+                    <p>猪肉（5斤装）</p>
+                    <p>
+                        <strong>21</strong>/
+                        件
+                    </p>
+                </div>
+                <div class="lauwen-goods-selection-item-quantity">
+                    <div class="input-group">
+                        <div class="input-group-addon lauwen-goods-selection-decrement" id="">&#8211;</div>
+                        <input type="text"
+                               class="form-control lauwen-goods-selection-item-value"
+                               placeholder="数量"
+                               id="lauwen-goods-1"
+                               value="0"
+                               data-goods-id="1"
+                               data-goods-name="猪肚"
+                               data-goods-specs="5斤装"
+                               data-goods-unit="件"
+                               data-goods-price="21"
+                        >
+                        <div class="input-group-addon lauwen-goods-selection-increment">&#10010;</div>
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item lauwen-goods-selection-item">
+                <div class="lauwen-goods-selection-item-info">
+                    <p>猪肉（5斤装）</p>
+                    <p>
+                        <strong>21</strong>/
+                        件
+                    </p>
+                </div>
+                <div class="lauwen-goods-selection-item-quantity">
+                    <div class="input-group">
+                        <div class="input-group-addon lauwen-goods-selection-decrement" id="">&#8211;</div>
+                        <input type="text"
+                               class="form-control lauwen-goods-selection-item-value"
+                               placeholder="数量"
+                               id="lauwen-goods-1"
+                               value="0"
+                               data-goods-id="1"
+                               data-goods-name="猪肚"
+                               data-goods-specs="5斤装"
+                               data-goods-unit="件"
+                               data-goods-price="21"
+                        >
+                        <div class="input-group-addon lauwen-goods-selection-increment">&#10010;</div>
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item lauwen-goods-selection-item">
+                <div class="lauwen-goods-selection-item-info">
+                    <p>猪肉（5斤装）</p>
+                    <p>
+                        <strong>21</strong>/
+                        件
+                    </p>
+                </div>
+                <div class="lauwen-goods-selection-item-quantity">
+                    <div class="input-group">
+                        <div class="input-group-addon lauwen-goods-selection-decrement" id="">&#8211;</div>
+                        <input type="text"
+                               class="form-control lauwen-goods-selection-item-value"
+                               placeholder="数量"
+                               id="lauwen-goods-1"
+                               value="0"
+                               data-goods-id="1"
+                               data-goods-name="猪肚"
+                               data-goods-specs="5斤装"
+                               data-goods-unit="件"
+                               data-goods-price="21"
+                        >
+                        <div class="input-group-addon lauwen-goods-selection-increment">&#10010;</div>
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item lauwen-goods-selection-item">
+                <div class="lauwen-goods-selection-item-info">
+                    <p>猪肉（5斤装）</p>
+                    <p>
+                        <strong>21</strong>/
+                        件
+                    </p>
+                </div>
+                <div class="lauwen-goods-selection-item-quantity">
+                    <div class="input-group">
+                        <div class="input-group-addon lauwen-goods-selection-decrement" id="">&#8211;</div>
+                        <input type="text"
+                               class="form-control lauwen-goods-selection-item-value"
+                               placeholder="数量"
+                               id="lauwen-goods-1"
+                               value="0"
+                               data-goods-id="1"
+                               data-goods-name="猪肚"
+                               data-goods-specs="5斤装"
+                               data-goods-unit="件"
+                               data-goods-price="21"
+                        >
+                        <div class="input-group-addon lauwen-goods-selection-increment">&#10010;</div>
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item lauwen-goods-selection-item">
+                <div class="lauwen-goods-selection-item-info">
+                    <p>猪肉（5斤装）</p>
+                    <p>
+                        <strong>21</strong>/
+                        件
+                    </p>
+                </div>
+                <div class="lauwen-goods-selection-item-quantity">
+                    <div class="input-group">
+                        <div class="input-group-addon lauwen-goods-selection-decrement" id="">&#8211;</div>
+                        <input type="text"
+                               class="form-control lauwen-goods-selection-item-value"
+                               placeholder="数量"
+                               id="lauwen-goods-1"
+                               value="0"
+                               data-goods-id="1"
+                               data-goods-name="猪肚"
+                               data-goods-specs="5斤装"
+                               data-goods-unit="件"
+                               data-goods-price="21"
+                        >
+                        <div class="input-group-addon lauwen-goods-selection-increment">&#10010;</div>
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item lauwen-goods-selection-item">
+                <div class="lauwen-goods-selection-item-info">
+                    <p>猪肉（5斤装）</p>
+                    <p>
+                        <strong>21</strong>/
+                        件
+                    </p>
+                </div>
+                <div class="lauwen-goods-selection-item-quantity">
+                    <div class="input-group">
+                        <div class="input-group-addon lauwen-goods-selection-decrement" id="">&#8211;</div>
+                        <input type="text"
+                               class="form-control lauwen-goods-selection-item-value"
+                               placeholder="数量"
+                               id="lauwen-goods-1"
+                               value="0"
+                               data-goods-id="1"
+                               data-goods-name="猪肚"
+                               data-goods-specs="5斤装"
+                               data-goods-unit="件"
+                               data-goods-price="21"
+                        >
+                        <div class="input-group-addon lauwen-goods-selection-increment">&#10010;</div>
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item lauwen-goods-selection-item">
+                <div class="lauwen-goods-selection-item-info">
+                    <p>猪肉（5斤装）</p>
+                    <p>
+                        <strong>21</strong>/
+                        件
+                    </p>
+                </div>
+                <div class="lauwen-goods-selection-item-quantity">
+                    <div class="input-group">
+                        <div class="input-group-addon lauwen-goods-selection-decrement" id="">&#8211;</div>
+                        <input type="text"
+                               class="form-control lauwen-goods-selection-item-value"
+                               placeholder="数量"
+                               id="lauwen-goods-1"
+                               value="0"
+                               data-goods-id="1"
+                               data-goods-name="猪肚"
+                               data-goods-specs="5斤装"
+                               data-goods-unit="件"
+                               data-goods-price="21"
+                        >
+                        <div class="input-group-addon lauwen-goods-selection-increment">&#10010;</div>
+                    </div>
+                </div>
+            </li>
+        </ul>
     </div>
     <div class="panel-footer lauwen-goods-selection-box-footer">
         <button type="button" class="btn btn-default lauwen-goods-selection-cancel">取消</button>
@@ -167,10 +557,21 @@
         lauwen_goods_layer_index = layer.open({
             type: 1,
             title: ["商品选择", "font-size:16px;"],
-            area: ['60vw', '60vh'], //宽高
+            area: ['60vw', '80vh'], //宽高
             content: $("#lauwen-goods-selection-box")
         });
     }
+
+    $(".lauwen-goods-selection-type-item").on("click", function () {
+        console.log($(this).hasClass("lauwen-goods-selection-type-item-active"));
+        if (!$(this).hasClass("lauwen-goods-selection-type-item-active")) {
+            console.log(123);
+            $(".lauwen-goods-selection-type-item-active").removeClass("lauwen-goods-selection-type-item-active");
+            $(this).addClass("lauwen-goods-selection-type-item-active");
+            $("#lauwen-goods-selection-box .panel-body>ul").css("display", "none");
+            $("#lauwen-goods-selection-box-list-"+$(this).data("type")).css("display", "block");
+        }
+    })
 
     // 商品列表选择数据
     $(".lauwen-goods-selection-item-value").on("change", function () {
