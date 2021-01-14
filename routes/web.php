@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('goods-selection');
 });
+Route::get('/excel', function () {
+    return view('excel');
+});
