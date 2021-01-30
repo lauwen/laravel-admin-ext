@@ -14,11 +14,21 @@ Route::group([
     $router->get('/', 'HomeController@index')->name('home');
     $router->get('table', function () {
         $id = request()->get('la_id');
-        $res = \App\Models\CgSummaryDetail::where('summary_id', $id)->get();
+        $res = \App\Models\CgSummaryDetail::where('summary_id', $id)->select(
+            \Illuminate\Support\Facades\DB::raw("detail_id as id, summary_id as pid"),
+            'name', 'price', 'quantity', 'specs'
+        )->get();
         if (empty($res)) {
-            echo json_encode($res);;
+            echo json_encode($res, true);;
         }
-        echo json_encode($res->toArray());
+        echo json_encode($res, true);
+    });
+    $router->post('table', function () {
+        $res = request()->post('la_data');
+        if (empty($res)) {
+            echo json_encode($res, true);;
+        }
+        echo json_encode($res, true);
     });
     $router->resource('cg-summaries', CgSummaryController::class);
 

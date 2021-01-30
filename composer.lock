@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5f7f3e0c8f396225efe5bc752c0dc104",
+    "content-hash": "14ecd89486d687ca4ab9e62b23a0f66f",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -806,6 +806,69 @@
                 "trusted proxy"
             ],
             "time": "2020-10-22T13:48:01+00:00"
+        },
+        {
+            "name": "laravel-admin-ext/phpinfo",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel-admin-extensions/phpinfo.git",
+                "reference": "4212753c00e800c2d74f2cae79bf79cb1fd626b2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel-admin-extensions/phpinfo/zipball/4212753c00e800c2d74f2cae79bf79cb1fd626b2",
+                "reference": "4212753c00e800c2d74f2cae79bf79cb1fd626b2",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "encore/laravel-admin": "~1.6",
+                "php": ">=7.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~6.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Encore\\PHPInfo\\PHPInfoServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Encore\\PHPInfo\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "song",
+                    "email": "zosong@126.com"
+                }
+            ],
+            "description": "Show php information in laravel-admin",
+            "homepage": "https://github.com/laravel-admin-ext/phpinfo",
+            "keywords": [
+                "extension",
+                "laravel-admin",
+                "phpinfo"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel-admin-extensions/phpinfo/issues",
+                "source": "https://github.com/laravel-admin-extensions/phpinfo/tree/v1.0"
+            },
+            "time": "2018-09-09T09:38:15+00:00"
         },
         {
             "name": "laravel/framework",
@@ -7254,5 +7317,5 @@
         "php": "^7.2.5|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "plugin-api-version": "2.0.0"
 }
