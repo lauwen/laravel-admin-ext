@@ -1101,7 +1101,7 @@
             "dist": {
                 "type": "path",
                 "url": "app/Admin/Extensions/lauwen/grid",
-                "reference": "786cf2a87b53a0c5495ea487fa44f5c8c78b74fe"
+                "reference": "f9d9fde3706e29a03c84cbafa87703dd59cc8dd0"
             },
             "require": {
                 "encore/laravel-admin": "~1.6",

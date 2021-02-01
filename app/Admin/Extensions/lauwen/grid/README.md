@@ -24,38 +24,100 @@ $grid = new \Lauwen\Grid\Grid(new Model());
 ```
 $grid->setSubGridTitle(["你的子列表标题", ...]);
 $grid->setSubGridUrl(["请求的数据接口地址", ...]);    // la_id::get
+$grid->setActionUrl(["保存数据的接口地址", ...]);    // la_data::post
 $grid->setSubGridColumns([
     ["ID", "Name", "Price", "Quantity"],
     ...
 ]);  // 列标题
+// 其中field为字段名，editable为该字段是否可编辑
 $grid->setSubGridFields([
-    ['detail_id', 'name', 'price', 'quantity'],
+    [
+        [
+            "field"     =>  "id"
+        ],
+        [
+            "field"     =>  "name"
+        ],
+        [
+            "field"     =>  "price",
+            "editable"  =>  true
+        ],
+        [
+            "field"     =>  "quantity",
+            "editable"  =>  true
+        ],
+        [
+            "field"     =>  "specs"
+        ],
+        ...
+    ],
     ...
 ]);    // 列字段名
 
 或者
 
+
 $grid->setSubGrid(function ($subGrid) {
     $subGrid->setSubGridTitle(["你的子列表标题", ...]);
     $subGrid->setSubGridUrl(["请求的数据接口地址", ...]);    // la_id::get
+    $subGrid->setActionUrl(["保存数据的接口地址", ...]);    // la_data::post
     $subGrid->setSubGridColumns([
         ["ID", "Name", "Price", "Quantity"],
         ...
     ]);  // 列标题
-    $subGrid>setSubGridFields([
-        ['detail_id', 'name', 'price', 'quantity'],
-        ...
+    // 其中field为字段名，editable为该字段是否可编辑
+    $subGrid->setSubGridFields([
+        [
+            [
+                "field"     =>  "id"
+            ],
+            [
+                "field"     =>  "name"
+            ],
+            [
+                "field"     =>  "price",
+                "editable"  =>  true
+            ],
+            [
+                "field"     =>  "quantity",
+                "editable"  =>  true
+            ],
+            [
+                "field"     =>  "specs"
+            ],
+            ...
+        ],
+        [
+            [
+                "field"     =>  "id"
+            ],
+            [
+                "field"     =>  "name"
+            ],
+            [
+                "field"     =>  "price",
+                "editable"  =>  true
+            ],
+            [
+                "field"     =>  "quantity",
+                "editable"  =>  true
+            ],
+            [
+                "field"     =>  "specs"
+            ],
+            ...
+        ]
     ]);    // 列字段名
 });
 ```
 
-#### 数据接口说明
+#### 请求数据接口说明
 子列表通过get类型请求方式获取数据，请求数据时会传递列表主键到数据接口，键名：la_id，获取方式可参考如下
 ```
 $id = request()->get('la_id');
 ```
 
-返回的数据格式为json数组
+返回的数据格式为json数组，如果需要编辑必须返回主键为id,否则编辑后提交会有问题
 ```
 [
     {
@@ -71,4 +133,16 @@ $id = request()->get('la_id');
         "quantity": 1
     }
 ]
+```
+#### 保存数据接口说明
+子列表通过post类型请求方式提交数据，保存数据时会传递数据到保存接口，键名：la_data，获取方式可参考如下
+```
+$id = request()->post('la_data');
+```
+
+返回的数据格式为boolean类型
+```
+true
+或者
+false
 ```

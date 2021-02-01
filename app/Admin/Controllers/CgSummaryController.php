@@ -60,31 +60,51 @@ class CgSummaryController extends AdminController
 //        $grid->setSubGridColumns(["ID", "名称", "价格", "数量", "单位"]);
 //        $grid->setSubGridFields(['detail_id', 'name', 'price', 'quantity', 'specs']);
         $grid->setSubGrid(function ($subGrid) {
-            $subGrid->setSubGridTitle(["采购申请单明细"]);
-            $subGrid->setSubGridUrl(["/admin/table"]);    // la_id::get
-            $subGrid->setActionUrl(["/admin/table"]);    // la_id::get
-            $subGrid->setSubGridColumns([["ID", "名称", "价格", "数量", "单位"]]);
-            $subGrid->setSubGridFields([['id', 'name', 'price', 'quantity', 'specs'], ['id', 'name', 'price', 'quantity', 'specs']]);
-//            $f = [
-//                [
-//                    "field"     =>  "id"
-//                ],
-//                [
-//                    "field"     =>  "name"
-//                ],
-//                [
-//                    "field"     =>  "price",
-//                    "Editable"  =>  true
-//                ],
-//                [
-//                    "field"     =>  "quantity",
-//                    "Editable"  =>  true
-//                ],
-//                [
-//                    "field"     =>  "specs"
-//                ],
-//            ];
-//            $subGrid->setSubGridFields([$f]);
+            $subGrid->setSubGridTitle(["采购申请单明细","采购申请单明细"]);
+            $subGrid->setSubGridUrl(["/admin/table","/admin/table"]);    // la_id::get
+            $subGrid->setActionUrl(["/admin/table","/admin/table"]);    // la_id::get
+            $subGrid->setSubGridColumns([["ID", "名称", "价格", "数量", "单位"],["ID", "名称", "价格", "数量", "单位"]]);
+//            $subGrid->setSubGridFields([['id', 'name', 'price', 'quantity', 'specs'], ['id', 'name', 'price', 'quantity', 'specs'],]);
+            $subGrid->setSubGridFields([
+                [
+                    [
+                        "field"     =>  "id"
+                    ],
+                    [
+                        "field"     =>  "name"
+                    ],
+                    [
+                        "field"     =>  "price",
+                        "editable"  =>  true
+                    ],
+                    [
+                        "field"     =>  "quantity",
+                        "editable"  =>  true
+                    ],
+                    [
+                        "field"     =>  "specs"
+                    ],
+                ],
+                [
+                    [
+                        "field"     =>  "id"
+                    ],
+                    [
+                        "field"     =>  "name"
+                    ],
+                    [
+                        "field"     =>  "price",
+                        "editable"  =>  true
+                    ],
+                    [
+                        "field"     =>  "quantity",
+                        "editable"  =>  true
+                    ],
+                    [
+                        "field"     =>  "specs"
+                    ],
+                ]
+            ]);
         });
 
         return $grid;
